@@ -1,0 +1,9 @@
+- hosts: client
+  user: ansible
+  become: true
+  tasks:
+    - name: Enable EPEL Repository
+      yum:
+        name: epel-release
+        state: latest
+

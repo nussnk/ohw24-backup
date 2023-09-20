@@ -9,12 +9,12 @@ Vagrant.configure("2") do |config|
   
   boxes = [
     { :name => "backup",
-      :ip => "192.168.11.160",
-      :prov_file => "prov-log.sh",
+      :ip => "192.168.11.150",
+      :prov_file => "ansible/prov-backup.yml",
     },
     { :name => "client",
-      :ip => "192.168.11.150",
-      :prov_file => "prov-web.sh",
+      :ip => "192.168.11.160",
+      :prov_file => "ansible/prov-client.yml",
     }
   ]
  
@@ -23,7 +23,7 @@ Vagrant.configure("2") do |config|
       config.vm.hostname = opts[:name]
       config.vm.network "private_network", ip: opts[:ip]
       config.vm.provision "ansible" do |ansible|
-        ansible.playbook = "ansible/provision.yml"
+        ansible.playbook = opts[:prov_file]
         ansible.inventory_path = "ansible/hosts"
         ansible.host_key_checking = "false"
         ansible.verbose = "v"

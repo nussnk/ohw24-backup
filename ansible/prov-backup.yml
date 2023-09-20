@@ -1,9 +1,9 @@
-- hosts: both
-  user: vagrant
+- hosts: backup
+  become: true
+  user: ansible
   tasks:
     - name: Enable EPEL Repository
-      dnf:
+      yum:
         name: epel-release
         state: latest
-        become: True
 
