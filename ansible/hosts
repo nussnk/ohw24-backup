@@ -1,7 +1,7 @@
 [backup]
-192.168.11.150
-[client]
 192.168.11.160
+[client]
+192.168.11.150
 
 [both:children]
 backup

@@ -10,4 +10,35 @@
       yum:
         name: borgbackup
         state: latest
+    - name: Create a group borg
+      group:
+        name: borg
+        state: present
+    - name: Create a user borg
+      user:
+        name: borg
+        shell: /bin/bash
+        group: borg
+    - name: Create a /var/backup
+      ansible.builtin.file:
+        path: /var/backup
+        state: directory
+        mode: '0755'
+        owner: 'borg'
+        group: 'borg'
+    - name: Create a .ssh directory
+      ansible.builtin.file:
+        path: /home/borg/.ssh
+        state: directory
+        mode: '700'
+        owner: 'borg'
+        group: 'borg'
+    - name: Create an authorized_keys file
+      ansible.builtin.file:
+        path: /home/borg/.ssh/authorized_keys
+        state: touch
+        mode: '600'
+        owner: 'borg'
+        group: 'borg'
+
 

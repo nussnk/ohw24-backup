@@ -9,11 +9,11 @@ Vagrant.configure("2") do |config|
   
   boxes = [
     { :name => "backup",
-      :ip => "192.168.11.150",
+      :ip => "192.168.11.160",
       :prov_file => "ansible/prov-backup.yml",
     },
     { :name => "client",
-      :ip => "192.168.11.160",
+      :ip => "192.168.11.150",
       :prov_file => "ansible/prov-client.yml",
     }
   ]
