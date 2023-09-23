@@ -28,7 +28,7 @@
         group: borg
     - name: Create a .ssh directory for root user
       ansible.builtin.file:
-        path: /home/root/.ssh
+        path: /root/.ssh
         state: directory
         mode: '0700'
         owner: root
