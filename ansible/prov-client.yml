@@ -19,6 +19,13 @@
         name: borg
         shell: /bin/bash
         group: borg
+    - name: Create a .ssh directory
+      ansible.builtin.file:
+        path: /home/borg/.ssh
+        state: directory
+        mode: '0700'
+        owner: borg
+        group: borg
     - name: Create a /var/backup
       ansible.builtin.file:
         path: /var/backup
@@ -26,4 +33,20 @@
         mode: '0755'
         owner: borg
         group: borg
+    - name: Start a prov script to do the rest
+      script:
+        cmd: client/prov-client.sh
+    - name: Copy borg-backup.service systemd files
+      copy:
+        src: client/borg-backup.service
+        dest: /etc/systemd/system/borg-backup.service
+    - name: Copy borg-backup.timer systemd files
+      copy:
+        src: client/borg-backup.timer
+        dest: /etc/systemd/system/borg-backup.timer
+    - name: Start and enable borg-backup timer
+      systemd:
+        name: borg-backup.timer
+        enabled: yes
+        state: started
 
