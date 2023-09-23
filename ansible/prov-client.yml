@@ -19,13 +19,20 @@
         name: borg
         shell: /bin/bash
         group: borg
-    - name: Create a .ssh directory
+    - name: Create a .ssh directory for borg user
       ansible.builtin.file:
         path: /home/borg/.ssh
         state: directory
         mode: '0700'
         owner: borg
         group: borg
+    - name: Create a .ssh directory for root user
+      ansible.builtin.file:
+        path: /home/root/.ssh
+        state: directory
+        mode: '0700'
+        owner: root
+        group: root
     - name: Create a /var/backup
       ansible.builtin.file:
         path: /var/backup

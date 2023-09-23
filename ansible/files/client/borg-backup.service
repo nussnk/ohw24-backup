@@ -19,8 +19,9 @@ ExecStart=/bin/borg check ${REPO}
 
 # Backup storage policy
 ExecStart=/bin/borg prune \
-    --keep-daily  90      \
-    --keep-monthly 12     \
-    --keep-yearly  1       \
+    --keep-hourly=5     \
+    --keep-daily=90      \
+    --keep-monthly=12     \
+    --keep-yearly=1       \
     ${REPO}
 
