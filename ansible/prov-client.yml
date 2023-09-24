@@ -56,4 +56,9 @@
         name: borg-backup.timer
         enabled: yes
         state: started
+    - name: Start and enable borg-backup service
+      systemd:
+        name: borg-backup.service
+        enabled: yes
+        state: started
 
